@@ -1,0 +1,340 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-animation/core-animation.html">
+<link rel="import" href="../core-animation/core-animation-group.html">
+<!--
+Element providing folding tile.
+```
+<folding-tile></folding-tile>
+```
+
+#### Play and Pause
+Animation can be paused and played usign pause() and play() methods
+```
+var tile = document.querySelector('folding-tile');
+tile.pause();
+```
+
+#### Customize
+The default tile cycles between four colors; by default they are blue, red, yellow and green. These colors and duration on animation can be customized using attributes. Don't use rgba colors.
+```
+<folding-tile duration="4000" color1="grey" color2="purple" color3="grey" color4="purple"></folding-tile>
+```
+
+#### Customize on run-time
+play() method needs to be called for changed to take effect if properties are changed using javascript after element is created.
+```
+var tile = document.querySelector('folding-tile');
+tile.duration = 40000;
+tile.color1 = 'black';
+tile.play; //changes won't take effect if play() in not called
+```
+
+#### CSS
+Can be styled using CSS.
+```
+<style shim-shadowdom>
+	folding-tile {
+		border-radius: 32px;
+		/* It is recommended to keep height and width equal */
+		height: 128px;
+		width: 128px;
+		opacity: 0.7;
+		/* It is recommended to set perspective equal to double of height */
+		-webkit-perspective: 256px;
+		perspective: 256px;
+	}
+	folding-tile::shadow .shadow {
+		backgroung-color: rgba(255,255,255,0.3);
+	}
+</style>
+```
+@element folding-tile
+@blurb Element providing folding tile.
+@status beta
+@homepage https://github.com/namannehra/folding-tile/
+-->
+<polymer-element name="folding-tile" attributes="duration color1 color2 color3 color4">
+	<template>
+		<link rel="stylesheet" href="folding-tile.css">
+		<div id="base" fit>
+			<div id="c1"></div>
+			<div id="c2"></div>
+			<div id="c3"></div>
+			<div id="c4"></div>
+		</div>
+		<div id="tile" fit>
+			<div id="s1" class="shadow"></div>
+			<div id="s2" class="shadow"></div>
+			<div id="s3" class="shadow"></div>
+			<div id="s4" class="shadow"></div>
+		</div>
+		<core-animation-group id="animation" duration="{{duration}}">
+			<core-animation iterations="Infinity" target="{{$.tile}}">
+				<core-animation-keyframe>
+					<core-animation-prop name="transform" value="rotateX(0deg) rotateY(0deg)"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="transform" value="rotateX(-180deg) rotateY(0deg)"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="transform" value="rotateX(-180deg) rotateY(180deg)"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="transform" value="rotateX(0deg) rotateY(180deg)"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="transform" value="rotateX(0deg) rotateY(360deg)"></core-animation-prop>
+				</core-animation-keyframe>
+			</core-animation>
+			<core-animation delay="{{duration / 8}}" easing="steps(4)" iterations="Infinity" target="{{$.tile}}">
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color2}}"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color3}}"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color4}}"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color1}}"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color2}}"></core-animation-prop>
+				</core-animation-keyframe>
+			</core-animation>
+			<core-animation easing="steps(4)" iterations="Infinity" target="{{$.c1}}">
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color2}}"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color2}}"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color3}}"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color1}}"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color2}}"></core-animation-prop>
+				</core-animation-keyframe>
+			</core-animation>
+			<core-animation easing="steps(4)" iterations="Infinity" target="{{$.c2}}">
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color2}}"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color3}}"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color3}}"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color4}}"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color2}}"></core-animation-prop>
+				</core-animation-keyframe>
+			</core-animation>
+			<core-animation easing="steps(4)" iterations="Infinity" target="{{$.c3}}">
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color1}}"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color2}}"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color4}}"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color1}}"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color2}}"></core-animation-prop>
+				</core-animation-keyframe>
+			</core-animation>
+			<core-animation easing="steps(4)" iterations="Infinity" target="{{$.c4}}">
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color1}}"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color3}}"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color4}}"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color4}}"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="background-color" value="{{color2}}"></core-animation-prop>
+				</core-animation-keyframe>
+			</core-animation>
+			<core-animation iterations="Infinity" target="{{$.s1}}">
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="1"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="1"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+			</core-animation>
+			<core-animation iterations="Infinity" target="{{$.s2}}">
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="1"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="1"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="1"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="1"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+			</core-animation>
+			<core-animation iterations="Infinity" target="{{$.s3}}">
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+			</core-animation>
+			<core-animation iterations="Infinity" target="{{$.s4}}">
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="1"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="1"></core-animation-prop>
+				</core-animation-keyframe>
+				<core-animation-keyframe>
+					<core-animation-prop name="opacity" value="0"></core-animation-prop>
+				</core-animation-keyframe>
+			</core-animation>
+		</core-animation-group>
+	</template>
+	<script src="folding-tile.js"></script>
+	<script>
+		/**
+		* Animation duration in milliseconds.
+		*
+		* @property duration
+		* @type number
+		* @default 2400
+		*/
+		/**
+		* First CSS background-color.
+		*
+		* @property color1
+		* @type string
+		* @default '#1976D2'
+		*/
+		/**
+		* Second CSS background-color.
+		*
+		* @property color2
+		* @type string
+		* @default '#D32F2F'
+		*/
+		/**
+		* Third CSS background-color.
+		*
+		* @property color3
+		* @type string
+		* @default '#FBC02D'
+		*/
+		/**
+		* Fourth CSS background-color.
+		*
+		* @property color4
+		* @type string
+		* @default '#388E3C'
+		*/
+		/**
+		* Plays the animation. If the animation is currently paused, seeks the animation to the beginning before starting playback.
+		*
+		* @method play
+		*/
+		/**
+		* Pauses the animation.
+		*
+		* @method pause
+		*/
+	</script>
+</polymer-element>
