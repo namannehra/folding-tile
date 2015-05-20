@@ -1,0 +1,43 @@
+{
+  "name": "folding-tile",
+  "authors": [
+    "Naman Nehra <naman.nehra98@gmail.com>"
+  ],
+  "description": "Element providing folding tile.",
+  "keywords": [
+    "folding-tile",
+    "web-component",
+    "web-components",
+    "polymer"
+  ],
+  "main": "folding-tile.html",
+  "license": "MIT",
+  "homepage": "https://github.com/namannehra/folding-tile/",
+  "ignore": [
+    "/.*",
+    "/tests/",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "../",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^0.5",
+    "core-animation": "Polymer/core-animation#^0.5"
+  },
+  "devDependencies": {
+    "core-component-page": "Polymer/core-component-page#^0.5"
+  },
+  "_release": "f6f6c1811c",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "f6f6c1811c6b7a9d02c4f9e92d44754c286c8e5a"
+  },
+  "_source": "git://github.com/namannehra/folding-tile.git",
+  "_target": "master",
+  "_originalSource": "namannehra/folding-tile",
+  "_direct": true
+}

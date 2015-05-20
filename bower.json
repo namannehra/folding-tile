@@ -1,0 +1,7 @@
+{
+  "name": "folding-tile#gh-pages",
+  "private": true,
+  "dependencies": {
+    "folding-tile": "namannehra/folding-tile#master"
+  }
+}

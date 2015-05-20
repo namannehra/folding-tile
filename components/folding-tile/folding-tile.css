@@ -1,0 +1,44 @@
+:host {
+	display: inline-block;
+	border-radius: 2px;
+	height: 64px;
+	width: 64px;
+	position: relative;
+	-webkit-perspective: 192px;
+	perspective: 192px;
+}
+/*:host(.circle) {
+	border-radius: 50%;
+	perspective: none;
+}*/
+#base, #tile {
+	border-radius: inherit;
+	overflow: hidden;
+}
+#tile {
+	background-color: {{color1}};
+}
+#base > div, .shadow {
+	height: 50%;
+	width: 50%;
+	position: absolute;
+}
+.shadow {
+	background-color: rgba(0,0,0,0.26);
+}
+#c1, #s1 {
+	top: 0;
+	left: 0;
+}
+#c2, #s2 {
+	top: 0;
+	right: 0;
+}
+#c3, #s3 {
+	bottom: 0;
+	left: 0;
+}
+#c4, #s4 {
+	right: 0;
+	bottom: 0;
+}

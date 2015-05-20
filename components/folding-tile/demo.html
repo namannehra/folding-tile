@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>folding-tile Demo</title>
+		<script src="../webcomponentsjs/webcomponents.min.js"></script>
+		<link rel="import" href="folding-tile.html">
+		<style shim-shadowdom>
+			body {
+				margin: 32px 32px 0 32px;
+			}
+			p {
+				margin-bottom: 64px;
+			}
+			folding-tile.white::shadow .shadow {
+				background-color: rgba(255,255,255,0.3);
+			}
+		</style>
+	</head>
+	<body unresolved>
+		<folding-tile></folding-tile>
+		<p>
+			Default<br>
+			<button id="play">Play</button>
+			<button id="pause">Pause</button>
+		</p>
+		<folding-tile duration="4000" color1="grey" color2="purple" color3="grey" color4="purple"></folding-tile>
+		<p>
+			duration="4000"<br>
+			color1="grey"<br>
+			color2="purple"<br>
+			color3="grey"<br>
+			color4="purple"<br>
+		</p>
+		<folding-tile class="white"></folding-tile>
+		<p>
+			folding-tile::shadow .shadow {<br>
+			background-color: rgba(255,255,255,0.3);<br>
+			}
+		</p>
+		<folding-tile style="border-radius:32px;height:128px;width:128px;opacity:0.54;-webkit-perspective:256px;perspective:256px;"></folding-tile>
+		<p>
+			border-radius: 32px;<br>
+			height: 128px;<br>
+			width: 128px;<br>
+			opacity: 0.54;<br>
+			-webkit-perspective: 256px;<br>
+			perspective: 256px;
+		</p>
+		<script>
+			var play = document.querySelector('#play');
+			var pause = document.querySelector('#pause');
+			var tile = document.querySelector('folding-tile');
+			play.onclick = function() {
+				tile.play();
+			};
+			pause.onclick = function() {
+				tile.pause();
+			};
+		</script>
+	</body>
+</html>
